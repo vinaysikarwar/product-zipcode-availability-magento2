@@ -1,0 +1,57 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Check'); ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        
+        <div class="field qty">
+            <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Check Availability at ') ?></span></label>
+            <div class="control">
+			<p>
+             <input type="text"
+        			name="checkzipcode" 
+					id="checkzipcode"
+					value="" 
+					class="input-text"
+					/>
+            <button type="button"
+                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                    class="action primary checkzipcodebutton"
+                    id="product-checkzipcode-button"  onclick="checkgivenzipcode();">
+                <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+            </button>
+			</p> 
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script type="text/javascript">
+
+    function checkgivenzipcode(){
+		var pinpcode = jQuery('#checkzipcode').val();
+		alert (pinpcode);
+		      jQuery.ajax({
+                url : '<?php echo $this->getUrl('ZipcodeAvailablity/Zipcheck/checkcode') ?>',
+                data: {"zipcode": pinpcode},
+                 type: "POST",
+                success : function(data) {              
+                  alert('Data: '+data);
+                },
+                error : function(request,error)
+                {
+                  alert("Error");
+                }
+            });
+		
+	}		
+</script>

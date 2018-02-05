@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="WTC_ZipcodeAvailablity::parent" title="WTC" module="WTC_ZipcodeAvailablity" sortOrder="100" resource="WTC_ZipcodeAvailablity::parent"/>
+        <add id="WTC_ZipcodeAvailablity::index" title="ZipcodeAvailablity Index" module="WTC_ZipcodeAvailablity" sortOrder="10" action="zipcodeavailablity/index" resource="WTC_ZipcodeAvailablity::index" parent="WTC_ZipcodeAvailablity::parent"/>
+		<add id="WTC_ZipcodeAvailablity::zipavail" title="WTC ZipcodeAvailablity" module="WTC_ZipcodeAvailablity" sortOrder="20" parent="WTC_ZipcodeAvailablity::parent" action="zipcodeavailablity/zipavail" resource="WTC_ZipcodeAvailablity::zipavail"/>
+
+    </menu>
+</config>
