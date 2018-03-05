@@ -9,7 +9,7 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
-<?php $buttonTitle = __('Check'); ?>
+<?php $buttonTitle = __('Check Availability'); ?>
 <div class="box-tocart">
     <div class="fieldset">
         
@@ -30,27 +30,40 @@
                 <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
             </button>
 			</p> 
+            <div id="ziploder" style="display:none;">
+             <img src="http://localhost/magento2/pub/static/version1518000228/frontend/Magento/luma/en_US/images/loader-1.gif" alt="Loading...">
+             </div>
+             <div id="zipdata"> </div>
             </div>
         </div>
         
     </div>
 </div>
+
+
+
 <script type="text/javascript">
 
     function checkgivenzipcode(){
-		var pinpcode = jQuery('#checkzipcode').val();
-		alert (pinpcode);
-		      jQuery.ajax({
-                url : '<?php echo $this->getUrl('ZipcodeAvailablity/Zipcheck/checkcode') ?>',
+
+        require(['jquery', 'jquery/ui'], function($){
+		var pinpcode = $('#checkzipcode').val();
+        
+             if(pinpcode !=''){
+                $('#ziploder').show();
+                $('#zipdata').html('');  
+                $.ajax({
+                url : '<?php echo $this->getUrl('zipcodeavailablity/index/zipcheck') ?>',
                 data: {"zipcode": pinpcode},
-                 type: "POST",
-                success : function(data) {              
-                  alert('Data: '+data);
-                },
-                error : function(request,error)
-                {
-                  alert("Error");
+                type: "POST",
+                success : function(data) { 
+                $('#ziploder').hide(); 
+                 $('#zipdata').html(data);            
                 }
+            }); 
+            }
+		   
+
             });
 		
 	}		

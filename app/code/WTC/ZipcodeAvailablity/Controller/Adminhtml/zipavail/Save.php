@@ -28,7 +28,7 @@ class Save extends \Magento\Backend\App\Action
         
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
-        if ($data) {
+        if ($data){
             $model = $this->_objectManager->create('WTC\ZipcodeAvailablity\Model\Zipavail');
 
             $id = $this->getRequest()->getParam('id');
